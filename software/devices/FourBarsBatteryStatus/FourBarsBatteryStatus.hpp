@@ -5,7 +5,7 @@
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/IBattery.h>
 
-#include "ColorDebug.hpp"
+#define DEFAULT_RATE_MS 1000 // [ms]
 
 namespace hexakiller
 {
@@ -14,9 +14,16 @@ namespace hexakiller
  * @ingroup Devices
  * @brief FourBarsBatteryStatus
  */
-class FourBarsBatteryStatus : public yarp::dev::DeviceDriver, public yarp::dev::IBattery {
+class FourBarsBatteryStatus : public yarp::dev::DeviceDriver,
+                              public yarp::dev::IBattery,
+                              public yarp::os::RateThread
+{
 
 public:
+
+    // Set the Thread Rate in the class constructor
+    FourBarsBatteryStatus() : RateThread(DEFAULT_RATE_MS) {} // In ms
+
     // -------- DeviceDriver declarations. Implementation in DeviceDriverImpl.cpp --------
 
     /**
@@ -40,6 +47,7 @@ public:
     */
     virtual bool close();
 
+
     // --------- IBattery declarations. Implementations in IBatteryImpl.cpp --------------
 
     virtual bool getBatteryVoltage(double &voltage);
@@ -54,8 +62,19 @@ public:
 
     virtual bool getBatteryInfo(yarp::os::ConstString &battery_info);
 
+
+    // -------- RateThread declarations. Implementation in RateThreadImpl.cpp --------
+    /**
+     * Loop function. This is the thread itself.
+     */
+    void run();
+
+private:
+    int pins[4];
+    double charge;
+
 };
 
-}  // namespace rd
+}  // namespace hexakiller
 
 #endif  //  __FOUR_BARS_BATTERY_STATUS__

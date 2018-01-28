@@ -19,7 +19,7 @@ IF (NOT SKIP_FourBarsBatteryStatus)
   # Include any directories needed for YARP
   include_directories(${YARP_INCLUDE_DIRS} ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${COLOR_DEBUG_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
-  yarp_add_plugin(FourBarsBatteryStatus FourBarsBatteryStatus.hpp DeviceDriverImpl.cpp IBatteryImpl.cpp)
+  yarp_add_plugin(FourBarsBatteryStatus FourBarsBatteryStatus.hpp DeviceDriverImpl.cpp IBatteryImpl.cpp RateThreadImpl.cpp)
   TARGET_LINK_LIBRARIES(FourBarsBatteryStatus ${YARP_LIBRARIES} ${ARAVIS_LIBRARIES})
 
   # Exporting dependencies for ASROB_HEXAKILLERConfig.cmake quite manually for now...
