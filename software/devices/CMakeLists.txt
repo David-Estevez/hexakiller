@@ -12,6 +12,7 @@ IF (ENABLE_Devices)
   include(YarpPlugin)
 
   add_subdirectory(FourBarsBatteryStatus)
+  add_subdirectory(TestBatteryStatus)
 
   # Exporting dependencies for ASROB_HEXAKILLERConfig.cmake quite manually for now...
   set(ROBOTICSLAB_YARP_DEVICES_INCLUDE_DIRS ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "appended libraries")
