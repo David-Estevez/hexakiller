@@ -5,17 +5,18 @@
 bool hexakiller::FourBarsBatteryStatus::getBatteryVoltage(double &voltage)
 {
     CD_ERROR("Not supported for this device.\n");
-    return false;
+    return true;
 }
 
 bool hexakiller::FourBarsBatteryStatus::getBatteryCurrent(double &current)
 {
     CD_ERROR("Not supported for this device.\n");
-    return false;
+    return true;
 }
 
 bool hexakiller::FourBarsBatteryStatus::getBatteryCharge(double &charge)
 {
+    measureBattery();
     charge = this->charge;
     return true;
 }
