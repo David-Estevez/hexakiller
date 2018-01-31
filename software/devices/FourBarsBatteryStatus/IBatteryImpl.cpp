@@ -22,6 +22,8 @@ bool hexakiller::FourBarsBatteryStatus::getBatteryCharge(double &charge)
 
 bool hexakiller::FourBarsBatteryStatus::getBatteryStatus(int &status)
 {
+    measureBattery();
+
     CD_WARNING("Suppport for this function is currently limited.\n");
     if (charge < 25)
         status = BATTERY_LOW_WARNING;

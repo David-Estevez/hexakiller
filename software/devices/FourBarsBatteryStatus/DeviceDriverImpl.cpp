@@ -23,7 +23,7 @@ bool hexakiller::FourBarsBatteryStatus::open(yarp::os::Searchable &config)
 
     for (int i = 0;  i < 4; i++)
     {
-        pins[i] = pins_bottle.get(i);
+        pins[i] = pins_bottle.get(i).asInt();
         pinMode(pins[i], INPUT);
     }
 

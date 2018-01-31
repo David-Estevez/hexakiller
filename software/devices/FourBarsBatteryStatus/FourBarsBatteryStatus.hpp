@@ -15,8 +15,7 @@ namespace hexakiller
  * @brief FourBarsBatteryStatus
  */
 class FourBarsBatteryStatus : public yarp::dev::DeviceDriver,
-                              public yarp::dev::IBattery,
-                              public yarp::os::RateThread
+                              public yarp::dev::IBattery
 {
 
 public:
@@ -62,14 +61,9 @@ public:
 
     virtual bool getBatteryInfo(yarp::os::ConstString &battery_info);
 
-
-    // -------- RateThread declarations. Implementation in RateThreadImpl.cpp --------
-    /**
-     * Loop function. This is the thread itself.
-     */
-    void run();
-
 private:
+    void measureBattery();
+
     int pins[4];
     double charge;
 
