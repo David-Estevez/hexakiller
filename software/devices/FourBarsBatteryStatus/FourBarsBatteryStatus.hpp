@@ -5,8 +5,6 @@
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/IBattery.h>
 
-#define DEFAULT_RATE_MS 1000 // [ms]
-
 namespace hexakiller
 {
 
@@ -19,10 +17,6 @@ class FourBarsBatteryStatus : public yarp::dev::DeviceDriver,
 {
 
 public:
-
-    // Set the Thread Rate in the class constructor
-    FourBarsBatteryStatus() : RateThread(DEFAULT_RATE_MS) {} // In ms
-
     // -------- DeviceDriver declarations. Implementation in DeviceDriverImpl.cpp --------
 
     /**
