@@ -13,14 +13,13 @@ YARP_PREPARE_PLUGIN(TestBatteryStatus
                     CATEGORY device
                     TYPE hexakiller::TestBatteryStatus
                     INCLUDE TestBatteryStatus.hpp)
-                    #WRAPPER batteryWrapper)
 
 IF (NOT SKIP_TestBatteryStatus)
   # Include any directories needed for YARP
   include_directories(${YARP_INCLUDE_DIRS} ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${COLOR_DEBUG_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
   yarp_add_plugin(TestBatteryStatus TestBatteryStatus.hpp DeviceDriverImpl.cpp IBatteryImpl.cpp TestBatteryStatus.cpp)
-  TARGET_LINK_LIBRARIES(TestBatteryStatus ${YARP_LIBRARIES} ${ARAVIS_LIBRARIES})
+  TARGET_LINK_LIBRARIES(TestBatteryStatus ${YARP_LIBRARIES})
 
   # Exporting dependencies for ASROB_HEXAKILLERConfig.cmake quite manually for now...
   set(ASROB_HEXAKILLER_INCLUDE_DIRS ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "appended libraries")

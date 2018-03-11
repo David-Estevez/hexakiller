@@ -8,19 +8,19 @@ find_package(YARP REQUIRED)
 include_directories(${YARP_INCLUDE_DIRS}) # deprecated
 list(APPEND CMAKE_MODULE_PATH ${YARP_MODULE_PATH}) # deprecated
 include(YarpPlugin) # deprecated
+find_library(wiringPi_LIB wiringPi)
 
 YARP_PREPARE_PLUGIN(FourBarsBatteryStatus
                     CATEGORY device
                     TYPE hexakiller::FourBarsBatteryStatus
-                    INCLUDE FourBarsBatteryStatus.hpp
-                    WRAPPER batteryWrapper)
+                    INCLUDE FourBarsBatteryStatus.hpp)
 
 IF (NOT SKIP_FourBarsBatteryStatus)
   # Include any directories needed for YARP
   include_directories(${YARP_INCLUDE_DIRS} ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${COLOR_DEBUG_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 
   yarp_add_plugin(FourBarsBatteryStatus FourBarsBatteryStatus.hpp DeviceDriverImpl.cpp IBatteryImpl.cpp FourBarsBatteryStatus.cpp)
-  TARGET_LINK_LIBRARIES(FourBarsBatteryStatus ${YARP_LIBRARIES} ${ARAVIS_LIBRARIES})
+  TARGET_LINK_LIBRARIES(FourBarsBatteryStatus ${YARP_LIBRARIES} ${wiringPi_LIB})
 
   # Exporting dependencies for ASROB_HEXAKILLERConfig.cmake quite manually for now...
   set(ASROB_HEXAKILLER_INCLUDE_DIRS ${ASROB_HEXAKILLER_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "appended libraries")
