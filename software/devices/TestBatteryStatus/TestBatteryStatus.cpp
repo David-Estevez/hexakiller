@@ -10,6 +10,6 @@ void hexakiller::TestBatteryStatus::measureBattery()
         value += 1; //-- Measure always 100%
 
     charge = 25*value;
-    CD_INFO("Battery charge: %d \%\n", charge);
+    CD_INFO("Battery charge: %f \%\n", charge);
 
 }

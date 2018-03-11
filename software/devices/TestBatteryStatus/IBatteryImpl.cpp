@@ -4,13 +4,15 @@
 
 bool hexakiller::TestBatteryStatus::getBatteryVoltage(double &voltage)
 {
-    CD_ERROR("Not supported for this device.\n");
+    CD_WARNING("Not supported for this device. Returning -1.\n");
+    voltage = -1;
     return true;
 }
 
 bool hexakiller::TestBatteryStatus::getBatteryCurrent(double &current)
 {
-    CD_ERROR("Not supported for this device.\n");
+    CD_WARNING("Not supported for this device. Returning -1.\n");
+    current = -1;
     return true;
 }
 
@@ -31,13 +33,14 @@ bool hexakiller::TestBatteryStatus::getBatteryStatus(int &status)
     else
         status = BATTERY_OK_IN_USE;
 
-return true;
+    return true;
 }
 
 bool hexakiller::TestBatteryStatus::getBatteryTemperature(double &temperature)
 {
-    CD_ERROR("Not supported for this device.\n");
-    return false;
+    CD_WARNING("Not supported for this device. Returning -273º\n");
+    temperature = -273;
+    return true;
 }
 
 bool hexakiller::TestBatteryStatus::getBatteryInfo(yarp::os::ConstString &battery_info)
